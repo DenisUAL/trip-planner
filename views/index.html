@@ -29,7 +29,7 @@
                         <input placeholder="Time" class="timepicker">
                     </div>
                     <div class="col s2">
-                        <a onclick="Materialize.toast('Activity added!', 1000, 'rounded')" class="btn-floating btn-small waves-effect waves-teal white
+                        <a onclick="Materialize.toast('Activity added!', 1000, 'rounded')" class="activity-btn btn-floating btn-small waves-effect waves-teal white
     "><i class="material-icons">add</i></a>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                         <input placeholder="Time" class="timepicker">
                     </div>
                     <div class="col s2">
-                        <a onclick="Materialize.toast('Hotel added!', 1000, 'rounded')" class="btn-floating btn-small waves-effect waves-teal  white
+                        <a onclick="Materialize.toast('Hotel added!', 1000, 'rounded')" class="hotel-btn btn-floating btn-small waves-effect waves-teal  white
     "><i class="material-icons">add</i></a>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                         <input placeholder="Time" class="timepicker">
                     </div>
                     <div class="col s2">
-                        <a onclick="Materialize.toast('Restaurant added!', 1000, 'rounded')" class="btn-floating btn-small waves-effect waves-teal white
+                        <a onclick="Materialize.toast('Restaurant added!', 1000, 'rounded')" class="restaurant-btn btn-floating btn-small waves-effect waves-teal white
     "><i class="material-icons">add</i></a>
                     </div>
                 </div>
@@ -81,15 +81,15 @@
                 <ul class="collapsible" data-collapsible="expandable">
                     <li>
                         <div class="collapsible-header white black-text"><i class="material-icons">location_city</i>Hotel</div>
-                        <div class="collapsible-body white black-text"><span>Wall Street Inn 3:00pm</span></div>
+                        <div class="collapsible-body white black-text hotel-chosen"></div>
                     </li>
                     <li>
                         <div class="collapsible-header white black-text"><i class="material-icons">golf_course</i>Activities</div>
-                        <div class="collapsible-body white black-text"><span>Ground Zero 5:00pm</span></div>
+                        <div class="collapsible-body white black-text activity-chosen"></div>
                     </li>
                     <li>
                         <div class="collapsible-header white black-text"><i class="material-icons">restaurant</i>Restaurant</div>
-                        <div class="collapsible-body white black-text"><span>Bouley 7:00pm</span></div>
+                        <div class="collapsible-body white black-text restaurant-chosen"></div>
                     </li>
                 </ul>
 
@@ -125,6 +125,12 @@
   var hotels = {{ templateHotels | dump | safe }};
   var restaurants = {{ templateRestaurants | dump | safe }};
   var activities = {{ templateActivities | dump | safe }};
+  var hotelSelected; 
+  var activitySelected;
+  var restaurantSelected;
+  // var clearBtn = '<a onclick="Materialize.toast('Day added!', 1000, 'rounded')" class="btn-floating btn-small waves-effect waves-teal white
+  //                        "><i class="material-icons">clear</i></a>';
+
 
   for (var i = 0; i < hotels.length; i++) {
     $('.hotel-option').append('<option value="' + hotels[i]['id'] + '">' + hotels[i]['name'] + '</option>');
@@ -138,6 +144,31 @@
     $('.restaurant-option').append('<option value="' + restaurants[i]['id'] + '">' + restaurants[i]['name'] + '</option>');
   }
 
+  // select option listener
+  $('.activity-option').change(function () {
+    activitySelected = $('.activity-option option:selected').text();
+  });
+
+  $('.hotel-option').change(function () {
+    hotelSelected = $('.hotel-option option:selected').text();
+  });
+
+  $('.restaurant-option').change(function () {
+    restaurantSelected = $('.restaurant-option option:selected').text();
+  });
+
+  // buttton event listener
+  $('.activity-btn').on('click', function () {
+    $('.activity-chosen').append('<p>' + $('select.activity-option option:checked').text() + '</p>');
+  });
+
+  $('.hotel-btn').on('click', function () {
+    $('.hotel-chosen').append('<p>' + $('select.hotel-option option:checked').text() + '</p>');
+  });
+
+  $('.restaurant-btn').on('click', function () {
+    $('.restaurant-chosen').append('<p>' + $('select.restaurant-option option:checked').text() + '</p>');
+  });
 </script>
 
 {% endblock %}
