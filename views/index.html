@@ -1,129 +1,140 @@
-{% extends 'layout.html' %}
-{% block content %}
+{% extends 'layout.html' %} {% block content %}
 <style>
     /* Always set the map height explicitly to define the size of the div
    * element that contains the map. */
-
+    
     #map {
         height: 100vh;
-/*        width: 75vw;
-*/    }
-
-    /* Optional: Makes the sample page fill the window. */
-
-  /*  html,
-    body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }*/
+        /*        width: 75vw;
+*/
+    }
+    
+    .nav-wrapper {
+        background-color: #7a75b5;
+    }
 </style>
 
-    <div class="row">
-            <div class="card col m8 s12" id="map"></div>
-            <div class="col m4 s12">
-            <div class="card  teal lighten-1">
-                <div class="card-content white-text">
-                    <div class="row">
-                        <div class="col s8">
-                            <select>
+<div class="row">
+    <div class="card col m8 s12" id="map"></div>
+    <div class="col m4 s12">
+        <div class="card  teal lighten-1">
+            <div class="card-content white-text">
+                <div class="row">
+                    <div class="col s8">
+                        <select>
                               <option value="" disabled selected>Activity</option>
-                                {% for activity in templateActivities%}
+                                <!--{% for activity in templateActivities%}
                                     <option value="{{activity.id}}">{{activity.name}}</option>
-                              {% endfor %}
+                                {% endfor %}-->
                             </select>
-                        </div>
-                        <div class="col s2">
-                            <input placeholder="Time" class="timepicker">
-                        </div>
-                        <div class="col s2">
-                            <a onclick="Materialize.toast('Activity added!', 1000, 'rounded')" class="btn-floating btn-small waves-effect waves-teal white
-    "><i class="material-icons">add</i></a>
-                        </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col s8">
-                            <select>
-                              <option value="" disabled selected>Hotel</option>
-                              {% for hotel in templateHotels%}
-                              <option value="{{hotel.id}}">{{hotel.name}}</option>
-                              {% endfor %}
-                            </select>
-                        </div>
-                         <div class="col s2">
-                            <input placeholder="Time" class="timepicker">
-                        </div>
-                        <div class="col s2">
-                            <a onclick="Materialize.toast('Hotel added!', 1000, 'rounded')" class="btn-floating btn-small waves-effect waves-teal  white
-    "><i class="material-icons">add</i></a>
-                        </div>
+                    <div class="col s2">
+                        <input placeholder="Time" class="timepicker">
                     </div>
-
-                    <div class="row">
-                        <div class="col s8">
-                            <select>
-                              <option value="" disabled selected>Restaurant</option>
-                                {% for restaurant in templateRestaurants%}
-                                    <option value="{{restaurant.id}}">{{restaurant.name}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                       <div class="col s2">
-                            <input placeholder="Time" class="timepicker">
-                        </div>
-                        <div class="col s2">
-                            <a onclick="Materialize.toast('Restaurant added!', 1000, 'rounded')" class="btn-floating btn-small waves-effect waves-teal white
+                    <div class="col s2">
+                        <a onclick="Materialize.toast('Activity added!', 1000, 'rounded')" class="btn-floating btn-small waves-effect waves-teal white
     "><i class="material-icons">add</i></a>
-                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card  teal lighten-1">
-                <div class="card-content white-text">
-                    <span class="card-title">Day</span>
-                    <input placeholder="Select" type="date" class="datepicker">
-                    <ul class="collapsible" data-collapsible="expandable">
-                        <li>
-                          <div class="collapsible-header white black-text"><i class="material-icons">location_city</i>Hotel</div>
-                          <div class="collapsible-body white black-text"><span>Wall Street Inn 3:00pm</span></div>
-                        </li>
-                        <li>
-                          <div class="collapsible-header white black-text"><i class="material-icons">golf_course</i>Activities</div>
-                          <div class="collapsible-body white black-text"><span>Ground Zero 5:00pm</span></div>
-                        </li>
-                        <li>
-                          <div class="collapsible-header white black-text"><i class="material-icons">restaurant</i>Restaurant</div>
-                          <div class="collapsible-body white black-text"><span>Bouley 7:00pm</span></div>
-                        </li>
-                    </ul>
 
+                <div class="row">
+                    <div class="col s8">
+                        <select>
+                              <option value="" disabled selected>Hotel</option>
+                              <!--{% for hotel in templateHotels%}
+                              <option value="{{hotel.id}}">{{hotel.name}}</option>
+                              {% endfor %}-->
+                            </select>
+                    </div>
+                    <div class="col s2">
+                        <input placeholder="Time" class="timepicker">
+                    </div>
+                    <div class="col s2">
+                        <a onclick="Materialize.toast('Hotel added!', 1000, 'rounded')" class="btn-floating btn-small waves-effect waves-teal  white
+    "><i class="material-icons">add</i></a>
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col s8">
+                        <select>
+                              <option value="" disabled selected>Restaurant</option>
+                                <!--{% for restaurant in templateRestaurants%}
+                                    <option value="{{restaurant.id}}">{{restaurant.name}}</option>
+                                {% endfor %}-->
+                            </select>
+                    </div>
+                    <div class="col s2">
+                        <input placeholder="Time" class="timepicker">
+                    </div>
+                    <div class="col s2">
+                        <a onclick="Materialize.toast('Restaurant added!', 1000, 'rounded')" class="btn-floating btn-small waves-effect waves-teal white
+    "><i class="material-icons">add</i></a>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="card  teal lighten-1">
+            <div class="card-content white-text">
+                <span class="card-title">Day</span>
+                <div class="row">
+                    <div class="col s10">
+                        <input placeholder="Select" type="date" class="datepicker">
+                    </div>
+                    <div class="col s2">
+                        <a onclick="Materialize.toast('Day added!', 1000, 'rounded')" class="btn-floating btn-small waves-effect waves-teal white
+                         "><i class="material-icons">clear</i></a>
+                    </div>
+
+                </div>
+                <ul class="collapsible" data-collapsible="expandable">
+                    <li>
+                        <div class="collapsible-header white black-text"><i class="material-icons">location_city</i>Hotel</div>
+                        <div class="collapsible-body white black-text"><span>Wall Street Inn 3:00pm</span></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header white black-text"><i class="material-icons">golf_course</i>Activities</div>
+                        <div class="collapsible-body white black-text"><span>Ground Zero 5:00pm</span></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header white black-text"><i class="material-icons">restaurant</i>Restaurant</div>
+                        <div class="collapsible-body white black-text"><span>Bouley 7:00pm</span></div>
+                    </li>
+                </ul>
+
+
+            </div>
+        </div>
     </div>
+</div>
 
-    <script>
-        var map;
+<script>
+    var map;
 
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: {
-                    lat: 40.7050,
-                    lng: -74.009
-                },
-                zoom: 16,
-                zoomControl: true,
-                scrollwheel: false
-            });
-        }
-    </script>
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {
+                lat: 40.7050,
+                lng: -74.009
+            },
+            zoom: 16,
+            zoomControl: true,
+            scrollwheel: false
+        });
+    }
+</script>
 
 
 <!--         <div class="row">
             <div class ="col m6" id="map"></div>
         </div> -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_ZZ8jN0msgHOId8p4rNEuUHwCaFNJNBI&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_ZZ8jN0msgHOId8p4rNEuUHwCaFNJNBI&callback=initMap" async defer></script>
+
+<script>
+  var hotels = {{ templateHotels | dump | safe }};
+  var restaurants = {{ templateRestaurants | dump | safe }};
+  var activities = {{ templateActivities | dump | safe }};
+
+</script>
 
 {% endblock %}
