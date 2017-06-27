@@ -73,8 +73,7 @@
                         <input placeholder="Select" type="date" class="datepicker">
                     </div>
                     <div class="col s2">
-                        <a onclick="Materialize.toast('Day added!', 1000, 'rounded')" class="btn-floating btn-small waves-effect waves-teal white
-                         "><i class="material-icons">clear</i></a>
+                        <a onclick="Materialize.toast('Day added!', 1000, 'rounded')" class="clear-btn btn-floating btn-small waves-effect waves-teal white"><i class="material-icons">clear</i></a>
                     </div>
 
                 </div>
@@ -122,18 +121,17 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_ZZ8jN0msgHOId8p4rNEuUHwCaFNJNBI&callback=initMap" async defer></script>
 
 <script>
-  var hotels = {{ templateHotels | dump | safe }};
-  var restaurants = {{ templateRestaurants | dump | safe }};
-  var activities = {{ templateActivities | dump | safe }};
+  var hotels = {{ hotels | dump | safe }};
+  var restaurants = {{ restaurants | dump | safe }};
+  var activities = {{ activities | dump | safe }};
   var hotelSelected; 
   var activitySelected;
   var restaurantSelected;
-  // var clearBtn = '<a onclick="Materialize.toast('Day added!', 1000, 'rounded')" class="btn-floating btn-small waves-effect waves-teal white
-  //                        "><i class="material-icons">clear</i></a>';
-
+  var clearBtn = "<a onclick="+ '"Materialize.toast('+"'Day added!', 1000, 'rounded'"+ ')"'+ 'class="clear-btn btn-floating btn-small waves-effect waves-teal white"><i class="material-icons">clear</i></a>';
 
   for (var i = 0; i < hotels.length; i++) {
     $('.hotel-option').append('<option value="' + hotels[i]['id'] + '">' + hotels[i]['name'] + '</option>');
+
   }
 
   for (var i = 0; i < activities.length; i++) {
@@ -159,16 +157,21 @@
 
   // buttton event listener
   $('.activity-btn').on('click', function () {
-    $('.activity-chosen').append('<p>' + $('select.activity-option option:checked').text() + '</p>');
+    $('.activity-chosen').append('<div>'+'<span>' + $('select.activity-option option:checked').text() + '</span>'+ clearBtn +'</div>');
   });
 
   $('.hotel-btn').on('click', function () {
-    $('.hotel-chosen').append('<p>' + $('select.hotel-option option:checked').text() + '</p>');
+    $('.hotel-chosen').append('<div>'+'<span>' + $('select.hotel-option option:checked').text() + '</span>'+ clearBtn +'</div>');
   });
 
   $('.restaurant-btn').on('click', function () {
-    $('.restaurant-chosen').append('<p>' + $('select.restaurant-option option:checked').text() + '</p>');
+    $('.restaurant-chosen').append('<div>'+'<span>' + $('select.restaurant-option option:checked').text() + '</span>'+ clearBtn +'</div>');
   });
+
+  $('.collapsible').on('click', '.clear-btn', function () {
+    $(this).parent().remove();
+  });
+
 </script>
 
 {% endblock %}
