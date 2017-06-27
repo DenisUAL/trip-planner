@@ -98,7 +98,7 @@
     </div>
 </div>
 
-<script>
+<!-- <script>
     var map;
 
     function initMap() {
@@ -113,13 +113,13 @@
         });
     }
 </script>
-
+ -->
 
 <!--         <div class="row">
             <div class ="col m6" id="map"></div>
         </div> -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_ZZ8jN0msgHOId8p4rNEuUHwCaFNJNBI&callback=initMap" async defer></script>
-
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_ZZ8jN0msgHOId8p4rNEuUHwCaFNJNBI&callback=initMap" async defer></script>
+ -->
 <script>
   var hotels = {{ hotels | dump | safe }};
   var restaurants = {{ restaurants | dump | safe }};
@@ -144,7 +144,7 @@
 
   // select option listener
   $('.activity-option').change(function () {
-    activitySelected = $('.activity-option option:selected').text();
+     console.log(activities[$('.activity-option option:selected').val() - 1].place.location);
   });
 
   $('.hotel-option').change(function () {
@@ -157,19 +157,16 @@
 
   // buttton event listener
   $('.activity-btn').on('click', function () {
-    $('.activity-chosen').append('<div>'+'<span>' + $('select.activity-option option:checked').text() + '</span>'+ clearBtn +'</div>');
-  });
-
+    $('.activity-chosen').append('<div class="row">'+'<div class="col s10">' + $('select.activity-option option:checked').text() + '</div><div class=`col s2`>' + clearBtn + '</div></div>');  });
+  
   $('.hotel-btn').on('click', function () {
-    $('.hotel-chosen').append('<div>'+'<span>' + $('select.hotel-option option:checked').text() + '</span>'+ clearBtn +'</div>');
-  });
+    $('.hotel-chosen').append('<div class="row">'+'<div class="col s10">' + $('select.hotel-option option:checked').text() + '</div>'+ "<div class=`col s2`>"+clearBtn +'</div></div>');  });
 
   $('.restaurant-btn').on('click', function () {
-    $('.restaurant-chosen').append('<div>'+'<span>' + $('select.restaurant-option option:checked').text() + '</span>'+ clearBtn +'</div>');
-  });
+    $('.restaurant-chosen').append('<div class="row">'+'<div class="col s10">' + $('select.restaurant-option option:checked').text() + '</div>'+ "<div class=`col s2`>"+clearBtn +'</div></div>');  });
 
   $('.collapsible').on('click', '.clear-btn', function () {
-    $(this).parent().remove();
+    $(this).parent().parent().remove();
   });
 
 </script>
