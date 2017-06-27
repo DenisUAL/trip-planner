@@ -21,11 +21,8 @@
             <div class="card-content white-text">
                 <div class="row">
                     <div class="col s8">
-                        <select>
+                        <select class="activity-option">
                               <option value="" disabled selected>Activity</option>
-                                <!--{% for activity in templateActivities%}
-                                    <option value="{{activity.id}}">{{activity.name}}</option>
-                                {% endfor %}-->
                             </select>
                     </div>
                     <div class="col s2">
@@ -39,11 +36,8 @@
 
                 <div class="row">
                     <div class="col s8">
-                        <select>
-                              <option value="" disabled selected>Hotel</option>
-                              <!--{% for hotel in templateHotels%}
-                              <option value="{{hotel.id}}">{{hotel.name}}</option>
-                              {% endfor %}-->
+                        <select class="hotel-option">
+                              <option "value="" disabled selected>Hotel</option>
                             </select>
                     </div>
                     <div class="col s2">
@@ -57,11 +51,8 @@
 
                 <div class="row">
                     <div class="col s8">
-                        <select>
+                        <select class="restaurant-option">
                               <option value="" disabled selected>Restaurant</option>
-                                <!--{% for restaurant in templateRestaurants%}
-                                    <option value="{{restaurant.id}}">{{restaurant.name}}</option>
-                                {% endfor %}-->
                             </select>
                     </div>
                     <div class="col s2">
@@ -134,6 +125,18 @@
   var hotels = {{ templateHotels | dump | safe }};
   var restaurants = {{ templateRestaurants | dump | safe }};
   var activities = {{ templateActivities | dump | safe }};
+
+  for (var i = 0; i < hotels.length; i++) {
+    $('.hotel-option').append('<option value="' + hotels[i]['id'] + '">' + hotels[i]['name'] + '</option>');
+  }
+
+  for (var i = 0; i < activities.length; i++) {
+    $('.activity-option').append('<option value="' + activities[i]['id'] + '">' + activities[i]['name'] + '</option>');
+  }
+
+  for (var i = 0; i < restaurants.length; i++) {
+    $('.restaurant-option').append('<option value="' + restaurants[i]['id'] + '">' + restaurants[i]['name'] + '</option>');
+  }
 
 </script>
 
